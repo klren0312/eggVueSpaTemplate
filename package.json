@@ -2,7 +2,7 @@
   "name": "zzestemplate",
   "version": "1.0.0",
   "description": "egg + vue + sequelize + mysql + jwt",
-  "private": true,
+  "private": false,
   "egg": {
     "declarations": true
   },
