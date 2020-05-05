@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
 module.exports = app => {
-  const { STRING, ENUM, DATE, NOW } = app.Sequelize
+  const { STRING, ENUM, DATE, NOW } = app.Sequelize;
 
   const User = app.model.define('user', {
     username: {
@@ -11,7 +11,7 @@ module.exports = app => {
       validate: {
         is: /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){1,50}$/i,
         isLowercase: true,
-      }
+      },
     },
     password: {
       type: STRING(32),
@@ -19,26 +19,26 @@ module.exports = app => {
     },
     sex: {
       type: ENUM,
-      values: ['M', 'F'],
-      allowNull: true
+      values: [ 'M', 'F' ],
+      allowNull: true,
     },
     created_at: {
       type: DATE,
       field: 'created_at',
       allowNull: false,
-      defaultValue: NOW
+      defaultValue: NOW,
     },
     updated_at: {
       type: DATE,
       field: 'updated_at',
       allowNull: false,
-      defaultValue: NOW
-    }
+      defaultValue: NOW,
+    },
   }, {
-      timestamps: false,
-      tableName: 'user',
-      underscored: false
-    })
+    timestamps: false,
+    tableName: 'user',
+    underscored: false,
+  });
 
-  return User
-}
+  return User;
+};

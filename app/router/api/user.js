@@ -1,21 +1,21 @@
-'use strict'
+'use strict';
 
 module.exports = app => {
-  const { controller, middleware, apiV1Router } = app
+  const { controller, middleware, apiV1Router } = app;
 
   // 用户注册
-  apiV1Router.post('/user', app.jwt, controller.api.user.register)
+  apiV1Router.post('/user', app.jwt, controller.api.user.register);
 
   // 用户登录
-  apiV1Router.post('/user/login', controller.api.user.login)
+  apiV1Router.post('/user/login', controller.api.user.login);
 
   // 获取用户列表
-  apiV1Router.get('/user', app.jwt, middleware.pagination, controller.api.user.getAllUser)
+  apiV1Router.get('/user', app.jwt, middleware.pagination, controller.api.user.getAllUser);
 
   // 更新用户信息
-  apiV1Router.put('/user/:id', app.jwt, controller.api.user.updateUserInfo)
+  apiV1Router.put('/user/:id', app.jwt, controller.api.user.updateUserInfo);
 
   // 删除用户信息
-  apiV1Router.delete('/user/:id', app.jwt, controller.api.user.deleteUserById)
+  apiV1Router.delete('/user/:id', app.jwt, controller.api.user.deleteUserById);
 
-}
+};

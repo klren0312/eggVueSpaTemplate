@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const Service = require('egg').Service
+const Service = require('egg').Service;
 
 class UserService extends Service {
   /**
@@ -9,7 +9,7 @@ class UserService extends Service {
    * @return {Object} 用户信息
    */
   async create(user) {
-    return await this.ctx.model.User.create(user)
+    return await this.ctx.model.User.create(user);
   }
 
   /**
@@ -19,9 +19,9 @@ class UserService extends Service {
    */
   async findByUsername(username) {
     const user = await this.ctx.model.User.findOne({
-      where: { username }
-    })
-    return user
+      where: { username },
+    });
+    return user;
   }
 
   /**
@@ -30,14 +30,14 @@ class UserService extends Service {
    * @return {Object} user 用户信息
    */
   async findById(id) {
-    const { ctx } = this
+    const { ctx } = this;
     const user = await ctx.model.User.findOne({
-      where: { id }
-    })
+      where: { id },
+    });
     if (!user) {
-      this.ctx.throw(404, 'user not found')
+      this.ctx.throw(404, 'user not found');
     }
-    return user
+    return user;
   }
 
   /**
@@ -47,12 +47,12 @@ class UserService extends Service {
    * @return {Object} 更新结果
    */
   async update(id, values) {
-    const user = await this.ctx.service.user.findById(id)
+    const user = await this.ctx.service.user.findById(id);
     if (!user) {
-      this.ctx.throw(404, 'user not found')
+      this.ctx.throw(404, 'user not found');
     }
-    delete values.id
-    return user.update(values)
+    delete values.id;
+    return user.update(values);
   }
 
   /**
@@ -61,18 +61,17 @@ class UserService extends Service {
    * @return {String} 结果
    */
   async deleteById(id) {
-    const user = await this.ctx.model.User.destroy({ where: { id } })
+    const user = await this.ctx.model.User.destroy({ where: { id } });
     if (!user) {
-      this.ctx.throw(404, '没有此用户')
-    }
-    else if (user) {
-      return '用户删除成功'
+      this.ctx.throw(404, '没有此用户');
+    } else if (user) {
+      return '用户删除成功';
     } else {
-      return '请联系管理员！'
+      return '请联系管理员！';
     }
 
   }
 
 }
 
-module.exports = UserService
+module.exports = UserService;

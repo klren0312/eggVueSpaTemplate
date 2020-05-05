@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const Service = require('egg').Service
+const Service = require('egg').Service;
 
 class CommonService extends Service {
   /**
@@ -11,8 +11,8 @@ class CommonService extends Service {
    */
   async findCount({ modelName, where = {} }) {
     return this.ctx.model[modelName].count({
-      where
-    })
+      where,
+    });
   }
 
   /**
@@ -29,13 +29,13 @@ class CommonService extends Service {
     include = [],
   }) {
     const {
-      pagination
-    } = this.ctx.helper
+      pagination,
+    } = this.ctx.helper;
     const {
       order,
       offset,
-      limit
-    } = pagination(page)
+      limit,
+    } = pagination(page);
     return this.ctx.model[modelName].findAll({
       where,
       order,
@@ -43,7 +43,7 @@ class CommonService extends Service {
       limit,
       attributes,
       include,
-    })
+    });
   }
 
   /**
@@ -57,10 +57,10 @@ class CommonService extends Service {
     where = {},
     attributes = {},
     include = [],
-    order = []
+    order = [],
   }) {
-    return this.ctx.model[modelName].findOne({ where, include, attributes, order })
+    return this.ctx.model[modelName].findOne({ where, include, attributes, order });
   }
 }
 
-module.exports = CommonService
+module.exports = CommonService;

@@ -1,14 +1,14 @@
-'use stricts'
+'use strict';
 
-const crypto = require('crypto')
+const crypto = require('crypto');
 module.exports = {
   /**
    * 加密
    * @param {String} str            需要加密的字符串
    */
   bhash: str => {
-    var md5 = crypto.createHash('md5')
-    return md5.update(str).digest('hex')
+    const md5 = crypto.createHash('md5');
+    return md5.update(str).digest('hex');
   },
 
   /**
@@ -17,8 +17,8 @@ module.exports = {
    * @param {String} hash           比对的hash值
    */
   bcompare: (str, hash) => {
-    var md5 = crypto.createHash('md5')
-    return md5.update(str).digest('hex') === hash
+    const md5 = crypto.createHash('md5');
+    return md5.update(str).digest('hex') === hash;
   },
 
   /**
@@ -31,12 +31,12 @@ module.exports = {
    * return {object}
    */
   pagination: page => {
-    const { pageField, pageSort, pageSize, pageIndex } = page
-    const order = [[pageField, pageSort]]
-    const offset = (pageIndex - 1) * pageSize
-    const limit = pageSize
+    const { pageField, pageSort, pageSize, pageIndex } = page;
+    const order = [[ pageField, pageSort ]];
+    const offset = (pageIndex - 1) * pageSize;
+    const limit = pageSize;
 
-    return { order, offset, limit }
+    return { order, offset, limit };
   },
 
   /**
@@ -66,45 +66,45 @@ module.exports = {
    * 处理成功请求后的响应
    */
   success: ({ ctx, code = 200, res = {}, msg }) => {
-    if (!res) code = 404
-    ctx.status = 200
+    if (!res) code = 404;
+    ctx.status = 200;
     ctx.body = {
-      code: code,
+      code,
       message: msg || ctx.helper.errorCode[code],
-      data: res
-    }
+      data: res,
+    };
   },
 
   /**
    * 处理失败请求后的响应
    */
   fail: ({ ctx, code = 500, res = {}, msg }) => {
-    ctx.status = 200
+    ctx.status = 200;
     ctx.body = {
-      code: code,
+      code,
       message: msg || ctx.helper.errorCode[code],
-      data: res
-    }
+      data: res,
+    };
   },
 
   /**
    * http请求封装
    */
-  request: async ({ctx, method = 'GET', url='', data = {}}) => {
+  request: async ({ ctx, method = 'GET', url = '', data = {} }) => {
     const result = await ctx.curl(url, {
-      method: method,
+      method,
       contentType: 'json',
       dataType: 'json',
-      data: data
-    })
-    return result
+      data,
+    });
+    return result;
   },
 
   /**
    * 加密
    * @param {object} data 需要加密的数据
    */
-  encryptSha1: (data) => {
-    return crypto.createHash('sha1').update(data,'utf8').digest('hex');
-  }
-}
+  encryptSha1: data => {
+    return crypto.createHash('sha1').update(data, 'utf8').digest('hex');
+  },
+};

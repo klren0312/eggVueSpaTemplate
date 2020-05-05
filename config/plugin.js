@@ -10,29 +10,29 @@ module.exports = {
   // Sequelize插件
   sequelize: {
     enable: true,
-    package: 'egg-sequelize'
+    package: 'egg-sequelize',
   },
   // 校验插件
   validate: {
     enable: true,
-    package: 'egg-validate'
+    package: 'egg-validate',
   },
   // jwt插件
   jwt: {
     enable: true,
-    package: 'egg-jwt'
+    package: 'egg-jwt',
   },
 
   // 子路由
   routerPlus: {
     enable: true,
-    package: 'egg-router-plus'
+    package: 'egg-router-plus',
   },
 
   // 跨域
   cors: {
     enable: true,
-    package: 'egg-cors'
+    package: 'egg-cors',
   },
 
 };
